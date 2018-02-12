@@ -1,94 +1,57 @@
-# Docker CE
+The Moby Project
+================
 
-This repository hosts open source components of Docker CE products. The
-`master` branch serves to unify the upstream components on a regular
-basis. Long-lived release branches host the code that goes into a product
-version for the lifetime of the product.
+![Moby Project logo](docs/static_files/moby-project-logo.png "The Moby Project")
 
-This repository is solely maintained by Docker, Inc.
+Moby is an open-source project created by Docker to enable and accelerate software containerization.
 
-## Issues
+It provides a "Lego set" of toolkit components, the framework for assembling them into custom container-based systems, and a place for all container enthusiasts and professionals to experiment and exchange ideas.
+Components include container build tools, a container registry, orchestration tools, a runtime and more, and these can be used as building blocks in conjunction with other tools and projects.
 
-There are separate issue-tracking repos for the end user Docker CE
-products specialized for a platform. Find your issue or file a new issue
-for the platform you are using:
+## Principles
 
-* https://github.com/docker/for-linux
-* https://github.com/docker/for-mac
-* https://github.com/docker/for-win
-* https://github.com/docker/for-aws
-* https://github.com/docker/for-azure
+Moby is an open project guided by strong principles, aiming to be modular, flexible and without too strong an opinion on user experience.
+It is open to the community to help set its direction.
 
-## Unifying upstream sources
+- Modular: the project includes lots of components that have well-defined functions and APIs that work together.
+- Batteries included but swappable: Moby includes enough components to build fully featured container system, but its modular architecture ensures that most of the components can be swapped by different implementations.
+- Usable security: Moby provides secure defaults without compromising usability.
+- Developer focused: The APIs are intended to be functional and useful to build powerful tools.
+They are not necessarily intended as end user tools but as components aimed at developers.
+Documentation and UX is aimed at developers not end users.
 
-The `master` branch is a combination of components adapted from
-different upstream git repos into a unified directory structure using the
-[moby-components](https://github.com/shykes/moby-extras/blob/master/cmd/moby-components)
-tool.
+## Audience
 
-You can view the upstream git repos in the
-[components.conf](components.conf) file. Each component is isolated into
-its own directory under the [components](components) directory.
+The Moby Project is intended for engineers, integrators and enthusiasts looking to modify, hack, fix, experiment, invent and build systems based on containers.
+It is not for people looking for a commercially supported system, but for people who want to work and learn with open source code.
 
-The tool will import each component git history within the appropriate path.
+## Relationship with Docker
 
-For example, this shows a commit
-is imported into the component `engine` from
-[moby/moby@a27b4b8](https://github.com/moby/moby/commit/a27b4b8cb8e838d03a99b6d2b30f76bdaf2f9e5d)
-into the `components/engine` directory.
+The components and tools in the Moby Project are initially the open source components that Docker and the community have built for the Docker Project.
+New projects can be added if they fit with the community goals. Docker is committed to using Moby as the upstream for the Docker Product.
+However, other projects are also encouraged to use Moby as an upstream, and to reuse the components in diverse ways, and all these uses will be treated in the same way. External maintainers and contributors are welcomed.
 
-```
-commit 5c70746915d4589a692cbe50a43cf619ed0b7152
-Author: Andrea Luzzardi <aluzzardi@gmail.com>
-Date:   Sat Jan 19 00:13:39 2013
+The Moby project is not intended as a location for support or feature requests for Docker products, but as a place for contributors to work on open source code, fix bugs, and make the code more useful.
+The releases are supported by the maintainers, community and users, on a best efforts basis only, and are not intended for customers who want enterprise or commercial support; Docker EE is the appropriate product for these use cases.
 
-    Initial commit
-    Upstream-commit: a27b4b8cb8e838d03a99b6d2b30f76bdaf2f9e5d
-    Component: engine
+-----
 
- components/engine/container.go       | 203 ++++++++++++++++++++++++++++...
- components/engine/container_test.go  | 186 ++++++++++++++++++++++++++++...
- components/engine/docker.go          | 112 ++++++++++++++++++++++++++++...
- components/engine/docker_test.go     | 175 ++++++++++++++++++++++++++++...
- components/engine/filesystem.go      |  52 ++++++++++++++++++++++++++++...
- components/engine/filesystem_test.go |  35 +++++++++++++++++++++++++++
- components/engine/lxc_template.go    |  94 ++++++++++++++++++++++++++++...
- components/engine/state.go           |  48 ++++++++++++++++++++++++++++...
- components/engine/utils.go           | 115 ++++++++++++++++++++++++++++...
- components/engine/utils_test.go      | 126 ++++++++++++++++++++++++++++...
- 10 files changed, 1146 insertions(+)
-```
+Legal
+=====
 
-## Updates to `master` branch
+*Brought to you courtesy of our legal counsel. For more context,
+please see the [NOTICE](https://github.com/moby/moby/blob/master/NOTICE) document in this repo.*
 
-Main development of new features should be directed towards the upstream
-git repos. The `master` branch of this repo will periodically pull in new
-changes from upstream to provide a point for integration.
+Use and transfer of Moby may be subject to certain restrictions by the
+United States and other governments.
 
-## Branching for release
+It is your responsibility to ensure that your use and/or transfer does not
+violate applicable laws.
 
-When a release is started for Docker CE, a new branch will be created
-from `master`. Branch names will be `YY.MM` to represent the time-based
-release version of the product, e.g. `17.06`.
+For more information, please see https://www.bis.doc.gov
 
-## Adding fixes to release branch
-
-Note: every commit of a fix should affect files only within one component
-directory.
-
-### Fix available upstream
-
-A PR cherry-picking the necessary commits should be created against
-the release branch. If the the cherry-pick cannot be applied cleanly,
-the logic of the fix should be ported manually.
-
-### No fix yet
-
-First create the PR with the fix for the release branch. Once the fix has
-been merged, be sure to port the fix to the respective upstream git repo.
-
-## Release tags
-
-There will be a git tag for each release candidate (RC) and general
-availablilty (GA) release. The tag will only point to commits on release
-branches.
+Licensing
+=========
+Moby is licensed under the Apache License, Version 2.0. See
+[LICENSE](https://github.com/moby/moby/blob/master/LICENSE) for the full
+license text.
